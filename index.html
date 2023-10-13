@@ -205,7 +205,7 @@ nav a:hover {
             box-sizing: border-box;
         }
 
-        #logo-intro {
+        /* #logo-intro {
             position: fixed;
             top: 0;
             left: 0;
@@ -215,12 +215,9 @@ nav a:hover {
             align-items: center;
             justify-content: center;
             background-color: #333;
-            /* Assuming white as the background color */
             z-index: 1000;
-            /* To ensure it appears above all other content */
             animation: slideUp 2s forwards 2s;
-            /* 2 seconds of holding, then 2 seconds of sliding */
-        }
+        } */
 
         header img {
             transition: all 1s ease-out;
@@ -359,6 +356,10 @@ footer {
         }
 
         @media (max-width: 768px) {
+            h1, h2 {
+                font-size: 3em;
+            }
+
             .main-container {
                 flex-direction: column;
             }
@@ -466,7 +467,7 @@ footer {
                         animation-mixer></a-gltf-model>
                     <a-sky color="#333"></a-sky>
                 </a-scene> -->
-                <model-viewer src="assets/sith-holo/scene.gltf" ar ar-modes="webxr scene-viewer quick-look" alt="Sith Holocron" shadow-intensity="1" camera-controls auto-rotate autoplay></model-viewer>
+                <!-- <model-viewer src="assets/sith-holo/scene.gltf" ar ar-modes="webxr scene-viewer quick-look" alt="Sith Holocron" shadow-intensity="1" camera-controls auto-rotate autoplay></model-viewer> -->
 
 
             </div>
