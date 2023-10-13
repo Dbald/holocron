@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holding Company</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras@latest/dist/aframe-extras.min.js"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+
+
+    <style>
+        @font-face {
+            font-family: "Franklin Bold";
+            src: url(fonts/franklin_gothic_bold.ttf);
+        }
+
+        @font-face {
+            font-family: "Merchant Copy";
+            src: url(fonts/Merchant\ Copy.ttf);
+        }
+
+        @keyframes switchUp {
+            0% {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            50% {
+                justify-content: center;
+            }
+
+            100% {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        @keyframes slideUp {
+            0% {
+                top: 0;
+                height: 100vh;
+            }
+
+            100% {
+                top: 0;
+                height: 70px;
+                /* Assuming this as the height of your header */
+            }
+        }
+
+        @keyframes slideUp-section {
+            0% {
+                transform: translateY(100%);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes logo-slideLeft {
+            0% {
+                transform: translateX(150px);
+            }
+
+            5% {
+                opacity: 1;
+            }
+
+            10% {
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 1;
+            }
+
+            20% {
+                opacity: 0;
+            }
+
+            25% {
+
+                opacity: 1;
+            }
+
+            30% {
+                opacity: 0;
+            }
+
+            35% {
+                width: 150px;
+                height: auto;
+            }
+
+            50% {
+                width: 100px;
+                height: auto;
+                opacity: 0;
+            }
+
+            80% {
+                transform: translateX(150px);
+                opacity: 0;
+
+            }
+
+            95% {
+                transform: translateX(10px);
+                width: 100px;
+                height: auto;
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+                width: 100px;
+                height: auto;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ... (your existing styles) ... */
+
+/* ... (your existing styles) ... */
+
+body {
+    font-family: "Franklin Bold";
+    font-size: large;
+    text-transform: none; /* Removed uppercase for a more modern look */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100vh;
+    color: white;
+    background-color: #201c2b;
+}
+
+h1, h2 {
+    font-family: "Franklin Bold";
+    font-size: 4em;
+    color: gold;
+    margin: 0;
+    padding: 0;
+}
+
+header, footer {
+    padding: 25px 50px; /* Increased padding for a more spacious feel */
+    text-align: center;
+    background-color: #201c2b;
+}
+
+nav a {
+    margin: 0 15px; /* Increased margin for better spacing */
+    text-decoration: none;
+    color: gold;
+    transition: color 0.3s;
+    font-size: large;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #fff;
+    border-bottom: 2px solid gold; /* Sleek underline on hover */
+}
+
+.aframe-container {
+    border: solid 2px gold; /* Changed from dashed to solid for a cleaner look */
+    border-radius: 10px; /* Reduced the curve for a modern touch */
+}
+
+.about, .services, .contact {
+    margin: 20px 0;
+    background-color: #2a2740;
+    border: solid 2px gold;
+    border-radius: 10px;
+}
+
+.model-viewer {
+    border: solid 2px gold;
+    border-radius: 10px;
+}
+
+/* To keep the footer as it is since it already fits the modern look */
+
+/* ... (rest of your styles) ... */
+
+.aframe-container a-scene {
+    border-radius: 25px;
+}
+/* ... (rest of your styles) ... */
+
+        section {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: 100%;
+            scroll-snap-align: start;
+            animation: slideUp-section 2s forwards 2s;
+            padding: 2%;
+            box-sizing: border-box;
+        }
+
+        #logo-intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #333;
+            /* Assuming white as the background color */
+            z-index: 1000;
+            /* To ensure it appears above all other content */
+            animation: slideUp 2s forwards 2s;
+            /* 2 seconds of holding, then 2 seconds of sliding */
+        }
+
+        header img {
+            transition: all 1s ease-out;
+            /* Adjusts the position smoothly */
+        }
+
+        header #header-logo {
+            max-width: 100%;
+            /* Adjust as needed */
+            transition: all 1s;
+            /* This makes the logo shrink smoothly */
+        }
+
+        #logo-intro header {
+            max-width: 100%;
+            /* Adjust this size for the full-screen appearance */
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff;
+            width: 100%;
+            animation: switchUp 2s;
+        }
+
+
+        #header-logo {
+            width: 150px;
+            height: auto;
+            transition: all 1s ease-out;
+            /* Adjusts the position smoothly */
+            animation-name: logo-slideLeft;
+            animation-duration: 4s;
+            animation-timing-function: ease;
+            animation-fill-mode: forwards;
+            /* 2 seconds of holding, then 2 seconds of sliding */
+        }
+
+        #main-nav.hidden-nav {
+            opacity: 0;
+            visibility: hidden;
+            /* Hide it initially */
+            transition: opacity 0.5s 4s, visibility 0s 4s;
+            /* Starts after 4 seconds (2s holding + 2s sliding) */
+        }
+
+        #main-nav {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            /* Optional: This will add space between the two containers */
+            align-items: center;
+            /* This will vertically align the content in the center */
+        }
+
+        .left-container {
+            width: 50%;
+            /* You can adjust this based on your design preference */
+            padding-right: 2%;
+            /* Optional: Adding some padding to space it out from the A-Frame container */
+        }
+
+        
+
+        /* ... (rest of your styles) ... */
+
+        
+
+        /* ... (your existing styles) ... */
+
+footer {
+    background-color: #201c2b;  /* A deep space color */
+    border-top: 3px solid gold; /* Mimicking the intricate designs on holocrons */
+}
+
+.footer-links h3,
+.footer-social h3,
+.footer-contact h3 {
+    border-bottom: 2px solid gold; /* Making the division lines resemble holocron designs */
+}
+
+.footer-links a,
+.footer-contact a {
+    color: gold;  /* A golden color representing the lights of stars or holocron lights */
+}
+
+.footer-links a:hover,
+.footer-contact a:hover {
+    color: #fff;
+}
+
+.footer-social img:hover {
+    filter: brightness(1.2);
+}
+
+/* ... (rest of your styles) ... */
+
+
+        address {
+            font-style: normal;
+            line-height: 1.6;
+        }
+
+        /* ... (existing styles) ... */
+
+@media (max-width: 768px) {
+    h1, h2 {
+        font-size: 2em; /* Reduced font size for mobile */
+        text-align: center;
+    }
+
+    body {
+        font-size: medium; /* Adjust body font size for better readability on mobile */
+    }
+
+    header, footer {
+        padding: 15px 20px; /* Reduce padding for mobile */
+    }
+
+    nav a {
+        margin: 0 10px; /* Adjust margin for mobile */
+        font-size: medium; /* Adjust font size for better readability */
+    }
+
+    .main-container {
+        flex-direction: column;
+    }
+
+    .left-container,
+    .aframe-container {
+        width: 100%;
+    }
+    
+    #logo-intro {
+        animation: none; /* Consider simplifying or removing animations for mobile */
+    }
+    
+    #header-logo {
+        animation: none; /* Consider simplifying or removing animations for mobile */
+    }
+}
+
+/* ... (rest of your styles) ... */
+
+
+
+        /* ... Your existing styles ... */
+    </style>
+</head>
+
+<body>
+    <div id="logo-intro">
+        <header>
+            <img data-aos="fade-down" id="header-logo" alt="logo" src="img/Coffee co..png" />
+            <nav id="main-nav" class="hidden-nav" data-aos="fade-left" data-aos-delay="200">
+                <!-- Add a hidden class initially -->
+                <a href="#about">Jedi Holocrons</a>
+                <a href="#services">Sith Holocrons</a>
+                <a href="#contact">Contact Us</a>
+            </nav>
+        </header>
+    </div>
+    <section class="about" id="about" data-aos="fade-right">
+        <h2>JEDI HOLOCRONS</h2>
+        <div class="main-container">
+            <div class="aframe-container">
+
+                <!-- <a-scene embedded vr-mode-ui="enabled: false">
+                    <a-assets>
+                        <a-asset-item id="jedi-holo" src="assets/jedi-holo/scene.gltf"></a-asset-item>
+                    </a-assets>
+                    <a-gltf-model position="0 1.6 -0.26" src="#jedi-holo"
+                        animation="property: rotation; from: 0 0 0; to: 0 360 0 ; dur: 10000; easing: linear; loop: true"
+                        animation-mixer></a-gltf-model>
+                    <a-sky color="#333"></a-sky>
+                </a-scene> -->
+                <model-viewer src="assets/jedi-holo/scene.gltf" ar ar-modes="webxr scene-viewer quick-look" alt="Jedi Holocron" shadow-intensity="1" camera-controls auto-rotate autoplay></model-viewer>
+
+
+
+            </div>
+            <div class="left-container">
+                <p><strong>Introduction:</strong> Jedi holocrons are ancient, crystalline devices used by the Jedi Order
+                    to store vast amounts of knowledge, teachings, and wisdom. They are considered among the most
+                    valuable items a Jedi can possess, often holding the teachings of past Jedi Masters.</p>
+
+                <h3>Appearance & Structure:</h3>
+                <ul>
+                    <li><strong>Shape:</strong> Typically, Jedi holocrons are cubical, contrasting with the often
+                        pyramid-shaped Sith holocrons.</li>
+                    <li><strong>Material:</strong> Made of a crystal matrix, they often glow when activated.</li>
+                    <li><strong>Interface:</strong> Holocrons are unique in that they often require the Force to open
+                        and access. Once activated, they can project a holographic interface, often in the form of a
+                        gatekeeper or avatar, representing the primary Jedi who recorded the knowledge.</li>
+                </ul>
+
+                <h3>Content:</h3>
+                <ul>
+                    <li><strong>Teachings:</strong> Holocrons often contain teachings on the Force, lightsaber combat
+                        techniques, Jedi philosophy, and history.</li>
+                    <li><strong>Gatekeeper:</strong> The gatekeeper, a holographic representation, guides the user
+                        through the holocron's content. This gatekeeper often embodies the wisdom and personality of the
+                        Jedi who created the holocron.</li>
+                    <li><strong>Restricted Access:</strong> Some knowledge within a holocron is restricted, only
+                        accessible to Jedi of a certain rank or those deemed worthy.</li>
+                </ul>
+
+                <h3>History & Significance:</h3>
+                <ul>
+                    <li><strong>Ancient Knowledge:</strong> Some holocrons date back thousands of years, preserving the
+                        teachings of ancient Jedi Masters.</li>
+                    <li><strong>Jedi Archives:</strong> The Jedi Temple on Coruscant housed a collection of holocrons in
+                        its archives. These holocrons were a vital part of the training of young Jedi.</li>
+                    <li><strong>Rare & Valuable:</strong> Due to their significance, holocrons became targets during
+                        times of conflict. Many were lost, especially during the Jedi Purge led by Darth Sidious and
+                        Darth Vader.</li>
+                </ul>
+
+                <p><strong>Conclusion:</strong> Jedi holocrons serve as a bridge to the past, connecting generations of
+                    Jedi and ensuring that their wisdom, teachings, and history are preserved. They are a testament to
+                    the Jedi Order's commitment to knowledge and the passing down of their legacy.</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="services" id="services" data-aos="fade-left">
+        <h2>SITH HOLOCRONS</h2>
+        <div class="main-container">
+            <div class="aframe-container">
+
+                <!-- <a-scene embedded vr-mode-ui="enabled: false">
+                    <a-assets>
+                        <a-asset-item id="sith-holo" src="assets/sith-holo/scene.gltf"></a-asset-item>
+                    </a-assets>
+                    <a-gltf-model position="0 1.55 -0.26" src="#sith-holo"
+                        animation="property: rotation; from: 0 0 0; to: 0 360 0 ; dur: 10000; easing: linear; loop: true"
+                        animation-mixer></a-gltf-model>
+                    <a-sky color="#333"></a-sky>
+                </a-scene> -->
+                <model-viewer src="assets/sith-holo/scene.gltf" ar ar-modes="webxr scene-viewer quick-look" alt="Sith Holocron" shadow-intensity="1" camera-controls auto-rotate autoplay></model-viewer>
+
+
+            </div>
+            <div class="left-container">
+                <p><strong>Introduction:</strong> Sith holocrons are powerful dark side artifacts used by the Sith to
+                    preserve their teachings, strategies, and dark rituals. These mysterious pyramidal devices are
+                    counterparts to the Jedi holocrons but are imbued with the malevolent energies of the dark side.</p>
+
+                <h3>Appearance & Structure:</h3>
+                <ul>
+                    <li><strong>Shape:</strong> Sith holocrons are typically pyramidal, distinguishing them from the
+                        cubical Jedi holocrons.</li>
+                    <li><strong>Material:</strong> Constructed from a dark crystal matrix, they emanate a foreboding
+                        glow when active.</li>
+                    <li><strong>Interface:</strong> Much like Jedi holocrons, Sith holocrons are activated using the
+                        Force. They project a holographic gatekeeper, often manifesting as the Sith Lord who created the
+                        holocron or another significant dark side entity.</li>
+                </ul>
+
+                <h3>Content:</h3>
+                <ul>
+                    <li><strong>Teachings:</strong> Sith holocrons contain dark side rituals, teachings on Sith alchemy,
+                        strategies for power, and tales of Sith history.</li>
+                    <li><strong>Gatekeeper:</strong> The gatekeeper of a Sith holocron serves not just as a guide but
+                        also as a tempter, often challenging those who access its knowledge.</li>
+                    <li><strong>Traps:</strong> Sith holocrons are often rigged with traps, testing the worthiness and
+                        resilience of those who seek their knowledge.</li>
+                </ul>
+
+                <h3>History & Significance:</h3>
+                <ul>
+                    <li><strong>Ancient Origins:</strong> Many Sith holocrons trace their origins to ancient Sith Lords
+                        and dark side practitioners from eras long before the Galactic Empire.</li>
+                    <li><strong>Hiding Places:</strong> To protect their knowledge and lure Force-sensitive individuals
+                        to the dark side, Sith often hid their holocrons in places strong with the dark side of the
+                        Force.</li>
+                    <li><strong>Tools of Seduction:</strong> Sith holocrons have been used to seduce Jedi and other
+                        Force-sensitive beings, drawing them away from the light side.</li>
+                </ul>
+
+                <p><strong>Conclusion:</strong> Sith holocrons are more than mere repositories of knowledge; they are
+                    active instruments of the dark side, seeking to perpetuate the Sith legacy and seduce others into
+                    their malevolent grasp. Their existence is a testament to the enduring allure and power of the dark
+                    side of the Force.</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="contact" id="contact" data-aos="fade-right">
+        <h2>CONTACT US</h2>
+        <p>If you're looking for a partnership, investment opportunity, or simply wish to know more about us, don't
+            hesitate to get in touch. Our team is always eager to hear from you.</p>
+        <address>
+            <strong>SUNDAYS Holding Company</strong><br>
+            123 Business Blvd, Suite 456<br>
+            Metropolis, Country 78910<br>
+            Email: <a href="mailto:info@sundays.com">info@sundays.com</a><br>
+            Phone: +123-456-7890
+        </address>
+
+    </section>
+
+    <!-- ... (rest of your code) ... -->
+
+<footer class="scroll-section" data-aos="fade-up">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="img/Coffee co..png" alt="Holocron logo" width="100">
+        </div>
+        <div class="footer-links">
+            <h3>Galactic Archives</h3>
+            <ul>
+                <li><a href="#about">Jedi Holocrons</a></li>
+                <li><a href="#services">Sith Holocrons</a></li>
+                <li><a href="#">Galactic History</a></li>
+                <li><a href="#">Force Traditions</a></li>
+                <li><a href="#contact">Communicate</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <h3>Galactic Signals</h3>
+            <a href="#"><img src="img/rebel-icon.png" alt="Rebel Alliance" width="30"></a>
+            <a href="#"><img src="img/empire-icon.png" alt="Galactic Empire" width="30"></a>
+            <a href="#"><img src="img/mandalorian-icon.png" alt="Mandalorian" width="30"></a>
+        </div>
+        <div class="footer-contact">
+            <h3>HoloNet Coordinates</h3>
+            <address>
+                <strong>Galactic Holocron Archives</strong><br>
+                Outer Rim, Unknown Region<br>
+                Comlink: <a href="mailto:archives@holocron.galaxy">archives@holocron.galaxy</a><br>
+                HoloFrequency: +123-456-7890
+            </address>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2023 Galactic Holocron Archives. May the Force be with you.</p>
+    </div>
+</footer>
+
+<!-- ... (rest of your code) ... -->
+
+
+
+
+
+    <script>
+        // Fade Animations
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out-back'
+        });
+        // Logo Intro Animation
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                let logo = document.getElementById('header-logo');
+                logo.style.maxWidth = '90%'; // This is the size in the header after animation
+            }, 4000); // 2 seconds of holding + 2 seconds of sliding
+        });
+        // Full Page Scrolling
+        // let sections = document.querySelectorAll(".scroll-section, section");
+
+        // let lastScrollTop = 0;
+
+        // window.addEventListener("wheel", function (event) {
+        //     let st = window.pageYOffset || document.documentElement.scrollTop;
+
+        //     if (event.deltaY > 0 && st > lastScrollTop) {
+        //         // Scrolling down
+        //         scrollToNextSection();
+        //     } else {
+        //         // Scrolling up
+        //         scrollToPreviousSection();
+        //     }
+        //     lastScrollTop = st <= 0 ? 0 : st;
+        // }, false);
+
+        // function scrollToNextSection() {
+        //     let sections = document.querySelectorAll("section");
+        //     for (let i = 0; i < sections.length; i++) {
+        //         let section = sections[i];
+        //         if (section.getBoundingClientRect().top > window.innerHeight * 0.2) {
+        //             window.scrollTo({
+        //                 top: section.offsetTop,
+        //                 behavior: "smooth"
+        //             });
+        //             break;
+        //         }
+        //     }
+        // }
+
+        // function scrollToPreviousSection() {
+        //     let sections = Array.from(document.querySelectorAll("section")).reverse();
+        //     for (let i = 0; i < sections.length; i++) {
+        //         let section = sections[i];
+        //         if (section.getBoundingClientRect().top < -window.innerHeight * 0.2) {
+        //             window.scrollTo({
+        //                 top: section.offsetTop,
+        //                 behavior: "smooth"
+        //             });
+        //             break;
+        //         }
+        //     }
+        // }
+
+        // Hidden Nav
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                // Adjust the header height
+                let headerElement = document.querySelector('header');
+                headerElement.style.height = '70px';  // This is the height after the animation
+
+                // Show the navigation bar
+                let mainNav = document.getElementById('main-nav');
+                mainNav.classList.remove('hidden-nav');
+            }, 4000);  // 2 seconds of holding + 2 seconds of sliding
+        });
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

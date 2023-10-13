@@ -1,0 +1,11 @@
+Model Information:
+* title:	Jedi Holocron
+* source:	https://sketchfab.com/3d-models/jedi-holocron-4843940458cb48e18fa2cc79760c0114
+* author:	Flikd Design (https://sketchfab.com/Flikd_Design)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Jedi Holocron" (https://sketchfab.com/3d-models/jedi-holocron-4843940458cb48e18fa2cc79760c0114) by Flikd Design (https://sketchfab.com/Flikd_Design) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
