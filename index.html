@@ -134,12 +134,10 @@
 
         /* ... (your existing styles) ... */
 
-/* ... (your existing styles) ... */
-
 body {
-    font-family: "Franklin Bold";
-    font-size: large;
-    text-transform: none; /* Removed uppercase for a more modern look */
+    font-family: "Merchant Copy";
+    font-size: x-large;
+    text-transform: uppercase;
     line-height: 1.6;
     margin: 0;
     padding: 0;
@@ -147,61 +145,53 @@ body {
     overflow-x: hidden;
     height: 100vh;
     color: white;
-    background-color: #201c2b;
+    background-color: #201c2b; /* Deep space color */
 }
 
 h1, h2 {
     font-family: "Franklin Bold";
-    font-size: 4em;
-    color: gold;
-    margin: 0;
-    padding: 0;
+    font-size: 5em;
+    color: gold; /* Making headings prominent */
 }
 
 header, footer {
-    padding: 25px 50px; /* Increased padding for a more spacious feel */
+    padding: 25px;
     text-align: center;
-    background-color: #201c2b;
+    background-color: #201c2b; /* Consistent with the deep space theme */
 }
 
 nav a {
-    margin: 0 15px; /* Increased margin for better spacing */
+    margin: 0 10px;
     text-decoration: none;
-    color: gold;
+    color: gold; /* Using gold for links */
     transition: color 0.3s;
-    font-size: large;
-    font-weight: bold;
+    font-size: x-large;
 }
 
 nav a:hover {
     color: #fff;
-    border-bottom: 2px solid gold; /* Sleek underline on hover */
 }
 
 .aframe-container {
-    border: solid 2px gold; /* Changed from dashed to solid for a cleaner look */
-    border-radius: 10px; /* Reduced the curve for a modern touch */
+    border: dashed 2px gold; /* Changing border to gold for consistency */
 }
-
-.about, .services, .contact {
-    margin: 20px 0;
-    background-color: #2a2740;
-    border: solid 2px gold;
-    border-radius: 10px;
-}
-
-.model-viewer {
-    border: solid 2px gold;
-    border-radius: 10px;
-}
-
-/* To keep the footer as it is since it already fits the modern look */
-
-/* ... (rest of your styles) ... */
 
 .aframe-container a-scene {
     border-radius: 25px;
 }
+
+.about, .services, .contact {
+    margin: 20px 0;
+    background-color: #2a2740; /* A slightly different shade for differentiation */
+    border: dashed 2px gold;
+    border-radius: 25px;
+}
+
+.model-viewer {
+    border: dashed 2px gold;
+    border-radius: 25px;
+}
+
 /* ... (rest of your styles) ... */
 
         section {
@@ -216,7 +206,7 @@ nav a:hover {
         }
 
         #logo-intro {
-        
+            position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
@@ -300,11 +290,38 @@ nav a:hover {
             /* Optional: Adding some padding to space it out from the A-Frame container */
         }
 
-        
+        .aframe-container {
+            width: 48%;
+            /* Adjusting for the 2% padding on the left container. Adjust based on your design */
+            border: dashed 2px white;
+            border-radius: 25px;
+            margin: 2%;
+        }
+
+        .aframe-container a-scene {
+            width: 100%;
+            height: 600px;
+            /* You can adjust the height based on your design preference */
+        }
+
+
+        /* ... (your existing styles) ... */
+
+        model-viewer {
+            width: 100%;
+            height: 600px;
+            border: dashed 2px white;
+            border-radius: 25px;
+        }
 
         /* ... (rest of your styles) ... */
 
-        
+        .about,
+        .services,
+        .contact {
+            margin: 20px 0;
+            background-color: #333;
+        }
 
         /* ... (your existing styles) ... */
 
@@ -341,47 +358,16 @@ footer {
             line-height: 1.6;
         }
 
-        /* ... (existing styles) ... */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
 
-@media (max-width: 768px) {
-    h1, h2 {
-        font-size: 2em; /* Reduced font size for mobile */
-        text-align: center;
-    }
-
-    body {
-        font-size: medium; /* Adjust body font size for better readability on mobile */
-    }
-
-    header, footer {
-        padding: 15px 20px; /* Reduce padding for mobile */
-    }
-
-    nav a {
-        margin: 0 10px; /* Adjust margin for mobile */
-        font-size: medium; /* Adjust font size for better readability */
-    }
-
-    .main-container {
-        flex-direction: column;
-    }
-
-    .left-container,
-    .aframe-container {
-        width: 100%;
-    }
-    
-    #logo-intro {
-        animation: none; /* Consider simplifying or removing animations for mobile */
-    }
-    
-    #header-logo {
-        animation: none; /* Consider simplifying or removing animations for mobile */
-    }
-}
-
-/* ... (rest of your styles) ... */
-
+            .left-container,
+            .aframe-container {
+                width: 100%;
+            }
+        }
 
 
         /* ... Your existing styles ... */
@@ -467,7 +453,7 @@ footer {
     </section>
 
     <section class="services" id="services" data-aos="fade-left">
-        <h2>SITH HOLOCRONS</h2>
+        <h2>Sith Holocrons</h2>
         <div class="main-container">
             <div class="aframe-container">
 
